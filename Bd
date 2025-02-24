@@ -1,0 +1,43 @@
+CREATE DATABASE estoque_livros;
+
+USE estoque_livros;
+
+CREATE TABLE Livros (
+    id_livro INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    isbn VARCHAR(13) UNIQUE NOT NULL,
+    edicao VARCHAR(50),
+    editora VARCHAR(100),
+    ano_publicacao INT,
+    preco_capa DECIMAL(10,2),
+    categoria VARCHAR(50)
+    autor
+);
+
+CREATE TABLE Autores (
+    id_autor INT AUTO_INCREMENT PRIMARY KEY,
+    nome_completo VARCHAR(255) NOT NULL,
+    nacionalidade VARCHAR(100),
+    biografia TEXT
+);
+
+CREATE TABLE Livros_Autores (
+    id_livro INT,
+    id_autor INT,
+    PRIMARY KEY (id_livro, id_autor),
+    FOREIGN KEY (id_livro) REFERENCES Livros(id_livro) ON DELETE CASCADE,
+    FOREIGN KEY (id_autor) REFERENCES Autores(id_autor) ON DELETE CASCADE
+);
+
+CREATE TABLE Estoque (
+    id_estoque INT AUTO_INCREMENT PRIMARY KEY,
+    id_livro INT,
+    quantidade INT NOT NULL,
+    data_entrada DATE NOT NULL,
+    data_saida DATE NULL,
+    FOREIGN KEY (id_livro) REFERENCES Livros(id_livro) ON DELETE CASCADE
+);
+
+ALTER TABLE Livros
+ADD COLUMN autor_id INT NOT NULL,
+ADD CONSTRAINT fk_autor FOREIGN KEY (autor_id) REFERENCES Autores(id_autor) ON DELETE CASCADE;
