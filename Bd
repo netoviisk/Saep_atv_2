@@ -33,8 +33,9 @@ CREATE TABLE Estoque (
     id_estoque INT AUTO_INCREMENT PRIMARY KEY,
     id_livro INT,
     quantidade INT NOT NULL,
-    data_entrada DATE NOT NULL,
-    data_saida DATE NULL,
+    tipo VARCHAR NOT NULL,
+    data DATE NOT NULL,
+    valor INT NOT NULL,
     FOREIGN KEY (id_livro) REFERENCES Livros(id_livro) ON DELETE CASCADE
 );
 
