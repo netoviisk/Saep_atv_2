@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <title>Lista de Cadastros</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h2>Livros Cadastrados</h2>
+    <ul>
+        {% for livro in livros %}
+            <li>{{ livro.titulo }} - Autor: {{ livro.autor.nome }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'cadastrar_autor' %}">Cadastrar Autor</a> |
+    <a href="{% url 'cadastrar_livro' %}">Cadastrar Livro</a>
+</body>
+</html>
