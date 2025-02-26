@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <title>Lista de Cadastros</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="main-content">
+        <h2>Livros Cadastrados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Livro</th>
+                    <th>Autor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livro in livros %}
+                    <tr>
+                        <td>{{ livro.titulo }}</td>
+                        <td>{{ livro.autor.nome_completo }}</td>
+                        <td>
+                            <a href="{% url 'editar_livro' livro.id %}"><button>Editar Livro</button></a>
+                            <a href="{% url 'excluir_livro' livro.id %}"><button>Excluir Livro</button></a>
+                            <a href="{% url 'editar_autor' livro.autor.id %}"><button>Editar Autor</button></a>
+                            <a href="{% url 'excluir_autor' livro.autor.id %}"><button>Excluir Autor</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <footer class="footer">
+        <a href="{% url 'cadastro_livro' %}">Cadastrar Livro</a> |
+        <a href="{% url 'cadastro_autor' %}">Cadastrar Autor</a>
+    </footer>
+</body>
+</html>

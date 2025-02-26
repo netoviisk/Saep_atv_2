@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <title>Editar Livro</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="main-content">
+        <h2>Editar Livro</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+    <footer class="footer">
+        <a href="{% url 'lista_cadastros' %}">Ver Cadastros</a>
+    </footer>
+</body>
+</html>

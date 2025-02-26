@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <title>{% if livro %}Estoque de {{ livro.titulo }}{% else %}Lista de Estoques{% endif %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="main-content">
+        {% if livro %}
+            <h2>Estoque de {{ livro.titulo }}</h2>
+            <a href="{% url 'adicionar_estoque' livro.id %}"><button>Adicionar Estoque</button></a>
+        {% else %}
+            <h2>Lista de Estoques</h2>
+        {% endif %}
+        <table>
+            <thead>
+                <tr>
+                    {% if not livro %}<th>Livro</th>{% endif %}
+                    <th>Quantidade</th>
+                    <th>Tipo</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for estoque in estoques %}
+                    <tr>
+                        {% if not livro %}<td>{{ estoque.livro.titulo }}</td>{% endif %}
+                        <td>{{ estoque.quantidade }}</td>
+                        <td>{{ estoque.tipo }}</td>
+                        <td>{{ estoque.data }}</td>
+                        <td>{{ estoque.valor }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <footer class="footer">
+        <a href="{% url 'index' %}">Página Inicial</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <title>Adicionar Estoque para {{ livro.titulo }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="main-content">
+        <h2>Adicionar Estoque para {{ livro.titulo }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+    <footer class="footer">
+        <a href="{% url 'estoque' livro.id %}">Voltar para Estoque</a>
+    </footer>
+</body>
+</html>
